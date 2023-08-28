@@ -6,7 +6,7 @@ export default function logoutAction() {
   //delete the user
   deleteItem({ key: "userName" });
 
-  toast.success("you've deleted your account!");
+  toast.success("You've deleted your account!");
   //return redirect
   return redirect("/");
 }
