@@ -1,5 +1,5 @@
 import React from "react";
-import { json, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { fetchData } from "../helper";
 import Intro from "../components/Intro";
 import { toast } from "react-toastify";
