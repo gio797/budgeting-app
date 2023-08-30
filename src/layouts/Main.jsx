@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
-import { fetchData } from "../helper";
+import { fetchData } from "../helpers";
 import wave from "../assets/wave.svg";
 import Nav from "../components/Nav";
 
