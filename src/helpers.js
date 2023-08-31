@@ -64,6 +64,9 @@ export const calculateSpentByBudget = (budgetId) => {
 
 // formatting
 
+// format date
+export const formatDate = (epoch) => new Date(epoch).toLocaleDateString();
+
 // formatting percentages
 export const formatPercentage = (amt) => {
   return amt.toLocaleString(undefined, {
