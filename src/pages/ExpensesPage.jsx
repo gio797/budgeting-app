@@ -1,11 +1,30 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
-import { fetchData } from "../helpers";
+import { deleteItem, fetchData } from "../helpers";
 import Table from "../components/Table";
+import { toast } from "react-toastify";
 
-export const expensesLoader = () => {
+export const expensesLoader = async () => {
   const expenses = fetchData("expenses");
   return { expenses };
+};
+
+export const expensesAction = async ({ request }) => {
+  const data = await request.formData();
+  const { _action, ...values } = Object.fromEntries(data);
+
+  if (_action === "deleteExpense") {
+    try {
+      //delete an expense
+      deleteItem({
+        key: "expenses",
+        id: values.expenseId,
+      });
+      return toast.success(`Expense deleted!`);
+    } catch (e) {
+      throw new Error("There was a problem deleting item.");
+    }
+  }
 };
 
 function ExpensesPage() {
@@ -17,7 +36,7 @@ function ExpensesPage() {
       {expenses && expenses.length > 0 ? (
         <div className="grid-md">
           <h2>
-            Recent Expenses <small>({expenses.total})</small>
+            Recent Expenses <small>({expenses.length})</small>
           </h2>
           <Table expenses={expenses} />
         </div>
